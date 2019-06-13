@@ -16,8 +16,7 @@ public class UserRegister{
     private String password;
     private String phone;
     private String carNumber;
-
-    private static final String salt = com.appsdeveloperblog.encryption.PasswordUtils.getSalt(30);
+    private static final String salt = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     public String getUsername() {
         return username;
     }
