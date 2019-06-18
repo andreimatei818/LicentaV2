@@ -1,7 +1,9 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.Parking;
+import com.example.demo.entity.Reservation;
 import com.example.demo.service.ParkingService;
+import com.example.demo.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -19,11 +21,25 @@ public class ParkingController {
     @Autowired
     private ParkingService parkingService;
 
+    @Autowired
+    private ReservationService reservationService;
+
     @PostMapping(value="/parking")
     public ResponseEntity<Parking> register(@RequestBody Parking parking){
            parkingService.add(parking);
             return ResponseEntity.ok().build();
     }
+
+    @PostMapping(value="/reserveParking")
+    public ResponseEntity<Parking> update(@RequestBody Parking parking){
+        Reservation reservation = new Reservation();
+        reservation.setParking(parking);
+        reservation.setStartDate(parking.getStartDate());
+        reservation.setEndDate(parking.getEndDate());
+        reservationService.reservation(reservation);
+        return ResponseEntity.ok().build();
+    }
+
 
     @GetMapping(value = "/getParkingByUser" )
     public Optional<List<Parking>> getParkingByUsername(@PathParam("username") String username){

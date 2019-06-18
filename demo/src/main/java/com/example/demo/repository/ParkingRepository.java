@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -23,4 +24,6 @@ public interface ParkingRepository extends CrudRepository<Parking, Integer> {
 
     @Query("select p from Parking p")
     public Optional<List<Parking>> getAllParking();
+
+
 }

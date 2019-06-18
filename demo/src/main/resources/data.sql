@@ -22,3 +22,14 @@ CREATE TABLE `parkingdb`.`parking` (
   PRIMARY KEY (`id`),
   foreign key (user_id) references users(id)
   );
+
+CREATE TABLE `parkingdb`.`reservation` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `id_parking` INT,
+  `start_date` timestamp,
+  `end_date` timestamp,
+
+
+  PRIMARY KEY (`id`),
+  foreign key (id_parking) references parking(id)
+  );
