@@ -15,8 +15,12 @@ import java.util.Optional;
 public interface ParkingRepository extends CrudRepository<Parking, Integer> {
 
     @Query("SELECT p from Parking p where p.user.id=:id ")
-    public Optional<List<Parking>> getAllParkingByUserId(@Param("id") int id);
+    Optional<List<Parking>> getAllParkingByUserId(@Param("id") int id);
 
 
+    @Query("select p from Parking p where p.address=:address and p.user.id=:id")
+    Parking getParkingByAddress(@Param("address") String address ,@Param("id") int id);
 
+    @Query("select p from Parking p")
+    public Optional<List<Parking>> getAllParking();
 }

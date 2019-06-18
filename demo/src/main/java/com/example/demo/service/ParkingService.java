@@ -30,4 +30,15 @@ public class ParkingService {
         User user = userRepository.findByUsername(username);
         return parkingRepository.getAllParkingByUserId(user.getId());
     }
+
+    public Optional<Parking> deleteParkingRegistred(String address, String username) {
+        User user = userRepository.findByUsername(username);
+         Parking parking=parkingRepository.getParkingByAddress(address,user.getId());
+         parkingRepository.delete(parking);
+         return Optional.ofNullable(parking);
+    }
+
+    public Optional<List<Parking>> getListAllParkingAvailable() {
+        return parkingRepository.getAllParking();
+    }
 }

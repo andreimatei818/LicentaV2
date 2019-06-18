@@ -30,4 +30,14 @@ public class ParkingController {
         return parkingService.getListParkingByUsername(username);
     }
 
+    @RequestMapping(method = RequestMethod.DELETE, value = "/deleteParking")
+    public Optional<Parking> deleteParking(@PathParam("address") String address,@PathParam("usename") String username){
+        return parkingService.deleteParkingRegistred(address,username);
+    }
+
+
+    @GetMapping(value = "/getListAllParkingAddress" )
+    public Optional<List<Parking>> getAllParkingAvailable(){
+        return parkingService.getListAllParkingAvailable();
+    }
 }
