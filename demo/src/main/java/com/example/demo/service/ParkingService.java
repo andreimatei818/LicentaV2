@@ -41,4 +41,5 @@ public class ParkingService {
     public Optional<List<Parking>> getListAllParkingAvailable() {
         return parkingRepository.getAllParking();
     }
+
 }
