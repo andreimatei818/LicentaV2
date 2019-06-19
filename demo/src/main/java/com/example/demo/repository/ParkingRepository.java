@@ -26,4 +26,5 @@ public interface ParkingRepository extends CrudRepository<Parking, Integer> {
     public Optional<List<Parking>> getAllParking();
 
 
+
 }

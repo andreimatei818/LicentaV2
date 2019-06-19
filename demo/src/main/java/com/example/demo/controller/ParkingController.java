@@ -46,9 +46,19 @@ public class ParkingController {
         return parkingService.getListParkingByUsername(username);
     }
 
+    @GetMapping(value = "/getParkingReservedByUser" )
+    public List<Parking> getParkingReservedByUsername(@PathParam("username") String username){
+        return reservationService.getListParkingReservedByUsername(username);
+    }
+
     @RequestMapping(method = RequestMethod.DELETE, value = "/deleteParking")
     public Optional<Parking> deleteParking(@PathParam("address") String address,@PathParam("usename") String username){
         return parkingService.deleteParkingRegistred(address,username);
+    }
+ @RequestMapping(method = RequestMethod.DELETE, value = "/deleteParkingReserved")
+    public Optional<Reservation> deleteParking(@PathParam("address") String address){
+       return reservationService.deleteParkingReservation(address);
+
     }
 
 

@@ -42,4 +42,7 @@ public class ParkingService {
         return parkingRepository.getAllParking();
     }
 
+//    public void update(Parking parking) {
+//      parkingRepository.updateParking(parking.getId(),parking.getStartDate(),parking.getEndDate()) ;
+//    }
 }
