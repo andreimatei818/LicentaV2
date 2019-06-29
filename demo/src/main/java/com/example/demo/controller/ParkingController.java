@@ -55,6 +55,7 @@ public class ParkingController {
     public Optional<Parking> deleteParking(@PathParam("address") String address,@PathParam("usename") String username){
         return parkingService.deleteParkingRegistred(address,username);
     }
+
  @RequestMapping(method = RequestMethod.DELETE, value = "/deleteParkingReserved")
     public Optional<Reservation> deleteParking(@PathParam("address") String address){
        return reservationService.deleteParkingReservation(address);

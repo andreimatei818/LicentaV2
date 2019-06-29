@@ -33,3 +33,33 @@ CREATE TABLE `parkingdb`.`reservation` (
   PRIMARY KEY (`id`),
   foreign key (id_parking) references parking(id)
   );
+
+
+
+CREATE TABLE `parkingdb`.`verifyDataAndTime` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `id_parking` INT,
+  `start_date` timestamp,
+  `end_date` timestamp,
+  address varchar(10000),
+  carNumber varchar(1000),
+	id_user int,
+  PRIMARY KEY (`id`),
+  foreign key (id_parking) references parking(id),
+  foreign key (id_user) references users(id)
+  );
+
+CREATE TABLE `parkingdb`.`history` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `id_parking` INT,
+  `start_date` timestamp,
+  `end_date` timestamp,
+  address varchar(10000),
+  carNumber varchar(1000),
+  rezervat bool,
+  PRIMARY KEY (`id`),
+  foreign key (id_parking) references parking(id)
+
+  );
+
+
