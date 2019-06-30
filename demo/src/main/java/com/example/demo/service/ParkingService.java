@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -22,7 +24,7 @@ public class ParkingService {
 
     public Parking add(Parking parking) {
             User user = userRepository.findByUsername(parking.getUsername());
-            parking.setUser(user);
+                parking.setUser(user);
             return parkingRepository.save(parking);
     }
 
@@ -31,9 +33,20 @@ public class ParkingService {
         return parkingRepository.getAllParkingByUserId(user.getId());
     }
 
-    public Optional<Parking> deleteParkingRegistred(String address, String username) {
+//    public Optional<Parking> deleteParkingRegistred(String address, String username) {
+//        User user = userRepository.findByUsername(username);
+//         Parking parking=parkingRepository.getParkingByAddress(address,user.getId(),);
+//         parkingRepository.delete(parking);
+//         return Optional.ofNullable(parking);
+//    }
+
+    private static final String DATE_FORMATTER= "yyyy-MM-dd HH:mm:ss";
+
+    public Optional<Parking> deleteParkingRegistred(String address, String username,String startDate, String endDate) {
         User user = userRepository.findByUsername(username);
-         Parking parking=parkingRepository.getParkingByAddress(address,user.getId());
+
+         Parking parking=parkingRepository.getParkingByAddress(address,user.getId(),
+                 LocalDateTime.parse(startDate, DateTimeFormatter.ISO_DATE_TIME),LocalDateTime.parse(endDate, DateTimeFormatter.ISO_DATE_TIME));
          parkingRepository.delete(parking);
          return Optional.ofNullable(parking);
     }

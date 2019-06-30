@@ -4,6 +4,9 @@ import com.example.demo.entity.Parking;
 import com.example.demo.entity.Reservation;
 import com.example.demo.service.ParkingService;
 import com.example.demo.service.ReservationService;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -25,6 +28,8 @@ public class ParkingController {
     private ReservationService reservationService;
 
     @PostMapping(value="/parking")
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonFormat(pattern="dd/MM/yyyyThh:mm")
     public ResponseEntity<Parking> register(@RequestBody Parking parking){
            parkingService.add(parking);
             return ResponseEntity.ok().build();
@@ -51,12 +56,19 @@ public class ParkingController {
         return reservationService.getListParkingReservedByUsername(username);
     }
 
+//    @RequestMapping(method = RequestMethod.DELETE, value = "/deleteParking")
+//    public Optional<Parking> deleteParking(@PathParam("address") String address,@PathParam("usename") String username){
+//        return parkingService.deleteParkingRegistred(address,username);
+//    }
+
     @RequestMapping(method = RequestMethod.DELETE, value = "/deleteParking")
-    public Optional<Parking> deleteParking(@PathParam("address") String address,@PathParam("usename") String username){
-        return parkingService.deleteParkingRegistred(address,username);
+    public Optional<Parking> deleteParking(@PathParam("address") String address,@PathParam("usename") String username,
+                                           @PathParam("startDate") String startDate,@PathParam("endDate") String endDate){
+        return parkingService.deleteParkingRegistred(address,username,startDate,endDate);
     }
 
- @RequestMapping(method = RequestMethod.DELETE, value = "/deleteParkingReserved")
+
+    @RequestMapping(method = RequestMethod.DELETE, value = "/deleteParkingReserved")
     public Optional<Reservation> deleteParking(@PathParam("address") String address){
        return reservationService.deleteParkingReservation(address);
 

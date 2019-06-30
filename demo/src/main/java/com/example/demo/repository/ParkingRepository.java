@@ -19,8 +19,10 @@ public interface ParkingRepository extends CrudRepository<Parking, Integer> {
     Optional<List<Parking>> getAllParkingByUserId(@Param("id") int id);
 
 
-    @Query("select p from Parking p where p.address=:address and p.user.id=:id")
-    Parking getParkingByAddress(@Param("address") String address ,@Param("id") int id);
+    @Query("select p from Parking p where p.address=:address and p.user.id=:id and p.startDate=:startDate and p.endDate=:endDate ")
+    Parking getParkingByAddress(@Param("address") String address ,@Param("id") int id
+            ,@Param("startDate") LocalDateTime startDate,
+                                @Param("endDate") LocalDateTime endDate);
 
     @Query("select p from Parking p")
     public Optional<List<Parking>> getAllParking();
