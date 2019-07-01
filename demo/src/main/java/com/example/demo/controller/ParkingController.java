@@ -59,15 +59,16 @@ public class ParkingController {
         reservation.setParking(parking.getParking());
         reservation.setStartDate(parking.getParking().getStartDate());
         reservation.setEndDate(parking.getParking().getEndDate());
-        reservationService.reservation(reservation);
-        parkingService.deleteParkingRegistred(parkingSimple.getAddress(), parkingSimple.getUsername()
+        parkingService.deleteParkingRegistredTwo(parkingSimple.getAddress(), parkingSimple.getUsername()
                 , parking.getInitialStartDate().toString(),parking.getInitialEndDate().toString()
         );
-        SaveParking(parking);
+        saveParking(parking);
+
+        reservationService.reservation(reservation);
         return ResponseEntity.ok().build();
     }
 
-    private void SaveParking(ParkingTwoDate parking) {
+    private Parking saveParking(ParkingTwoDate parking) {
         LocalDateTime startDate = parking.getParking().getStartDate();
         LocalDateTime endDate = parking.getParking().getEndDate();
         LocalDateTime intialStart = parking.getInitialStartDate();
@@ -88,7 +89,7 @@ public class ParkingController {
             parking1.setStartDate(endDate);
             parking1.setEndDate(initialEnd);
         }
-        parkingService.add(parking1);
+      return parkingService.add(parking1);
     }
 
     @GetMapping(value = "/getParkingByUser")

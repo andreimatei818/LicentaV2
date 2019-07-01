@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "parking")
@@ -35,6 +36,13 @@ public class Parking implements Serializable {
 
     @Transient
     private String username;
+    @JsonIgnore
+    @OneToMany(
+            mappedBy = "parking",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<Reservation> reservationList;
 
     public Integer getId() {
         return id;
@@ -94,5 +102,13 @@ public class Parking implements Serializable {
 
     public void setIsFree(boolean free) {
         this.isFree = free;
+    }
+
+    public List<Reservation> getReservationList() {
+        return reservationList;
+    }
+
+    public void setReservationList(List<Reservation> reservationList) {
+        this.reservationList = reservationList;
     }
 }

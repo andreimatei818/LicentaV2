@@ -24,9 +24,10 @@ public interface ParkingRepository extends CrudRepository<Parking, Integer> {
             ,@Param("startDate") LocalDateTime startDate,
                                 @Param("endDate") LocalDateTime endDate);
 
-    @Query("select p from Parking p")
-    public Optional<List<Parking>> getAllParking();
+    Optional<List<Parking>> findByReservationListIsNull();
 
-
-
+    @Query("select p from Parking p where p.address=:address and p.startDate=:startDate and p.endDate=:endDate ")
+    Parking getParkingByAddress(@Param("address") String address
+            ,@Param("startDate") LocalDateTime startDate,
+                                @Param("endDate") LocalDateTime endDate);
 }

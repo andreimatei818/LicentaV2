@@ -4,6 +4,7 @@ import com.example.demo.entity.Parking;
 import com.example.demo.entity.Reservation;
 import com.example.demo.entity.User;
 import com.example.demo.entity.UserRegister;
+import com.example.demo.repository.ParkingRepository;
 import com.example.demo.repository.ReservationRepository;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.utile.RowMapperUserRegister;
@@ -22,9 +23,14 @@ public class ReservationService {
     private ReservationRepository reservationRepository;
 
 
+    @Autowired
+    private ParkingRepository parkingRepository;
+
 
 
     public Reservation  reservation(Reservation reservation) {
+     reservation.setParking(parkingRepository.save(reservation.getParking()));
+
         return reservationRepository.save(reservation);
 
     }
