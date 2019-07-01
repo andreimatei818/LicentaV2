@@ -33,8 +33,8 @@ public class ParkingService {
             User user = userRepository.findByUsername(parking.getParking().getUsername());
                 parking.getParking().setUser(user);
                 if(
-                        parking.getIntialDateStart().isBefore(parking.getParking().getStartDate()) &&
-                        parking.getInitialDateEnd().isAfter(parking.getParking().getEndDate())
+                        parking.getInitialStartDate().isBefore(parking.getParking().getStartDate()) &&
+                        parking.getInitialEndDate().isAfter(parking.getParking().getEndDate())
                   ){
 
                 }
@@ -55,10 +55,10 @@ public class ParkingService {
 
     private static final String DATE_FORMATTER= "yyyy-MM-dd HH:mm:ss";
 
-    public Optional<Parking> deleteParkingRegistred(String address, String username,String startDate, String endDate) {
-        User user = userRepository.findByUsername(username);
+        public Optional<Parking> deleteParkingRegistred(String address, String username,String startDate, String endDate) {
+            User user = userRepository.findByUsername(username);
 
-         Parking parking=parkingRepository.getParkingByAddress(address,user.getId(),
+             Parking parking=parkingRepository.getParkingByAddress(address,user.getId(),
                  LocalDateTime.parse(startDate, DateTimeFormatter.ISO_DATE_TIME),LocalDateTime.parse(endDate, DateTimeFormatter.ISO_DATE_TIME));
          parkingRepository.delete(parking);
          return Optional.ofNullable(parking);

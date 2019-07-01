@@ -4,8 +4,8 @@ import java.time.LocalDateTime;
 
 public class ParkingTwoDate {
     private Parking parking = new Parking();
-    private LocalDateTime intialDateStart;
-    private LocalDateTime initialDateEnd;
+    private LocalDateTime initialStartDate;
+    private LocalDateTime initialEndDate;
 
     public Parking getParking() {
         return parking;
@@ -15,19 +15,19 @@ public class ParkingTwoDate {
         this.parking = parking;
     }
 
-    public LocalDateTime getIntialDateStart() {
-        return intialDateStart;
+    public LocalDateTime getInitialStartDate() {
+        return initialStartDate;
     }
 
-    public void setIntialDateStart(LocalDateTime intialDateStart) {
-        this.intialDateStart = intialDateStart;
+    public void setInitialStartDate(LocalDateTime initialStartDate) {
+        this.initialStartDate = initialStartDate;
     }
 
-    public LocalDateTime getInitialDateEnd() {
-        return initialDateEnd;
+    public LocalDateTime getInitialEndDate() {
+        return initialEndDate;
     }
 
-    public void setInitialDateEnd(LocalDateTime initialDateEnd) {
-        this.initialDateEnd = initialDateEnd;
+    public void setInitialEndDate(LocalDateTime initialEndDate) {
+        this.initialEndDate = initialEndDate;
     }
 }
