@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.Parking;
+import com.example.demo.entity.ParkingTwoDate;
 import com.example.demo.entity.User;
 import com.example.demo.repository.ParkingRepository;
 import com.example.demo.repository.UserRepository;
@@ -26,6 +27,18 @@ public class ParkingService {
             User user = userRepository.findByUsername(parking.getUsername());
                 parking.setUser(user);
             return parkingRepository.save(parking);
+    }
+
+  public Parking add(ParkingTwoDate parking) {
+            User user = userRepository.findByUsername(parking.getParking().getUsername());
+                parking.getParking().setUser(user);
+                if(
+                        parking.getIntialDateStart().isBefore(parking.getParking().getStartDate()) &&
+                        parking.getInitialDateEnd().isAfter(parking.getParking().getEndDate())
+                  ){
+
+                }
+            return parkingRepository.save(parking.getParking());
     }
 
     public Optional<List<Parking>> getListParkingByUsername(String username) {

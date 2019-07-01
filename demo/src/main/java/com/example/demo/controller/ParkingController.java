@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.Parking;
+import com.example.demo.entity.ParkingTwoDate;
 import com.example.demo.entity.Reservation;
 import com.example.demo.service.ParkingService;
 import com.example.demo.service.ReservationService;
@@ -33,6 +34,11 @@ public class ParkingController {
     public ResponseEntity<Parking> register(@RequestBody Parking parking){
            parkingService.add(parking);
             return ResponseEntity.ok().build();
+    }
+
+    public ResponseEntity<Parking> register(@RequestBody ParkingTwoDate parking){
+        parkingService.add(parking);
+        return ResponseEntity.ok().build();
     }
 
     @PostMapping(value="/reserveParking")
